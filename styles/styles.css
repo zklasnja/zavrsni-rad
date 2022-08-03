@@ -1,6 +1,8 @@
-html *
+html *,
+.blog-post-title,
+.blog-title
 {
-   font-size: 14px!important;
+   font-size: 14px;
 }
 
 .blog-masthead {
@@ -9,6 +11,7 @@ html *
 
 .blog-title,
 .blog-post-title,
+.blog-header,
 a {
     color: #b34848;
 }
