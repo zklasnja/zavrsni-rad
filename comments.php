@@ -11,7 +11,10 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 <div class="comments">
     <div class="single-comment">
         <ul>
-            <?php foreach ($comments as $comment) { ?>
+            <?php if (empty($comments)){
+                echo "No comments on this post";
+            } else {
+            foreach ($comments as $comment) { ?>
             <li>
                     <div class="single-comment">
                         <div>posted by: <strong><?php echo $comment['author']; ?></strong> on <?php echo $comment['created_at']; ?></div>
@@ -19,7 +22,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
                     </div>
             </li>
             <hr>
-            <?php } ?>
+            <?php } }?>
         </ul>
     </div>
 </div>

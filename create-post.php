@@ -37,7 +37,7 @@
         $created_at = date('Y-m-d H:i:s', time());
 
         if(empty($body) || empty($title) || empty($author)){
-            $error = "All data need to be provided!";
+            $error = "Title, Author and Body of the Blog post are required!";
         } else {
             $sql = "INSERT INTO posts (
                 title, body, author, created_at)
@@ -50,38 +50,29 @@
     }
     ?>
 
-
     <main role="main" class="container">
-
         <div class="row">
-
             <form action="create-post.php" method="POST" id="postsForma">
-                <ul class="flex-outer">
-                    <li>
+                <div>
+                    <div>
                         <label for="title">Title</label>
                         <input type="text" id="title" name="title" placeholder="Enter title">
-                    </li>
-                    <li>
+                    </div>
+                    <div>
                         <label for="author">Author</label>
                         <input type="text" id="author" name="author" placeholder="Enter Author Name">
-                    </li>
-                    <li>
+                    </div>
+                    <div>
                         <label for="body">Body</label>
                         <textarea name="body" placeholder="Enter Body of the Blog" rows="5" id="bodyPosts"></textarea><br>
-                    </li>
+                    </div>
                     <span style=color:red> <?php echo $error; ?></span><br>
                     <button type="submit" name="submit">Submit</button>
-                </ul>
+                </div>
             </form>
-
             <?php include('sidebar.php') ?>
-
         </div><!-- /.row -->
-
     </main><!-- /.container -->
-
     <?php include('footer.php'); ?>
-
 </body>
-
 </html>
