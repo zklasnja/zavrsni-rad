@@ -1,6 +1,7 @@
 /*
  * Globals
  */
+@import "styles.css";
 
 @media (min-width: 48em) {
     html {
