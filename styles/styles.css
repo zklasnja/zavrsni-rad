@@ -21,28 +21,35 @@ a:hover {
     text-decoration: underline;
     color: #b34848;
 }
-  
-input[type=text]{
-    margin: 10px;
+
+.inputWrapper label{
+    display:block;
+}
+
+#title,
+#author,
+#bodyPosts,
+.submit {
+    margin-bottom: 15px;
     border: 1px solid black;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius: 5px;
+}
+
+#title,
+#author{
     width: 300px;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    border-radius: 5px;
-    box-sizing: content-box;
-    vertical-align: bottom;
+    box-sizing: border-box;
 }
 
-textarea {
-    margin: 10px;
+#bodyPosts {
     width: 500px;
-    border: 1px solid black;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    border-radius: 5px;
-    vertical-align: bottom;
 }
 
-button {
-    margin: 10px;
-    border: 2px solid black;
-    border-radius:5px;
+.label{
+    margin-bottom: 0px;
+}
+
+.submit:hover {
+    cursor: pointer;
 }

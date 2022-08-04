@@ -54,20 +54,20 @@
         <div class="row">
             <form action="create-post.php" method="POST" id="postsForma">
                 <div>
-                    <div>
-                        <label for="title">Title</label>
+                    <div class="inputWrapper">
+                        <label for="title" class="label">Title</label>
                         <input type="text" id="title" name="title" placeholder="Enter title">
                     </div>
-                    <div>
-                        <label for="author">Author</label>
+                    <div class="inputWrapper">
+                        <label for="author" class="label">Author</label>
                         <input type="text" id="author" name="author" placeholder="Enter Author Name">
                     </div>
-                    <div>
-                        <label for="body">Body</label>
+                    <div class="inputWrapper">
+                        <label for="body" class="label">Body</label>
                         <textarea name="body" placeholder="Enter Body of the Blog" rows="5" id="bodyPosts"></textarea><br>
                     </div>
                     <span style=color:red> <?php echo $error; ?></span><br>
-                    <button type="submit" name="submit">Submit</button>
+                    <button type="submit" name="submit" class="submit">Submit</button>
                 </div>
             </form>
             <?php include('sidebar.php') ?>

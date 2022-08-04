@@ -1,5 +1,5 @@
 <?php
-   include_once('db-connect.php');
+include_once('db-connect.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +25,9 @@
 <body class="va-l-page va-l-page--single">
 
     <?php include('header.php');
+
+    $error = null;
+
     if (isset($_GET['post_id'])) {
 
         //making a query to get all data needed to display a single post
@@ -41,9 +44,14 @@
             <div class="col-sm-8 blog-main">
 
                 <div class="blog-post">
-                    <h2 class="blog-post-title"><?php echo $singlePost['title'];?></h2>
-                    <p class="blog-post-meta"><?php echo $singlePost['created_at']?> by <a href="#"><?php echo $singlePost['author'];?></a></p>
-                    <p> <?php echo $singlePost['body'];?></p>
+                    <?php if (!$singlePost) {
+                        echo "Sorry, but we could not find this post!";
+                    } else { ?>
+
+                        <h2 class="blog-post-title"><?php echo $singlePost['title']; ?></h2>
+                        <p class="blog-post-meta"><?php echo $singlePost['created_at'] ?> by <a href="#"><?php echo $singlePost['author']; ?></a></p>
+                        <p> <?php echo $singlePost['body'];
+                        } ?></p>
                 </div><!-- /.blog-post -->
                 <div class="comments">
                     <h3><strong>Comments</strong></h3>
