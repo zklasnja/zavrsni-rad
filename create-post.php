@@ -28,20 +28,20 @@ include_once('db-connect.php');
     <?php include('header.php');
     $error = null;
     date_default_timezone_set('Europe/Belgrade');
-    
+
     $sql = "SELECT * FROM authors";
     $statement = $connection->prepare($sql);
     $statement->execute();
     $authors = $statement->fetchAll(PDO::FETCH_ASSOC);
-    
+
     if (isset($_POST['submit'])) {
-        
+
         $body = $_POST['body'];
         $title = $_POST['title'];
         $author = $_POST['author_id'];
         $created_at = date('Y-m-d H:i:s', time());
-        
-        
+
+
         if (empty($body) || empty($title) || empty($author)) {
             $error = "Title, Author and Body of the Blog post are required!";
         } else {
@@ -56,23 +56,23 @@ include_once('db-connect.php');
     }
     ?>
 
-<main role="main" class="container">
-    <div class="row">
-        <form action="create-post.php" method="POST" id="postsForma">
-            <div>
-                <div class="inputWrapper">
-                    <label for="title" class="label">Title</label>
-                    <input type="text" id="title" name="title" placeholder="Enter title">
-                </div>
-                <div class="inputWrapper">
-                    <label for="author" class="label">Author</label>
-                    <select id="author" name="author_id">
-                        <option>Select the Author</option>
-                        <?php foreach ($authors as $author) { ?>
-                            <option value=<?php echo $author['id']?>>
-                                <?php echo "${author['ime']} ${author['prezime']}"?>
-                            </option>
-                        <?php } ?>
+    <main role="main" class="container">
+        <div class="row">
+            <form action="create-post.php" method="POST" id="postsForma">
+                <div>
+                    <div class="inputWrapper">
+                        <label for="title" class="label">Title</label>
+                        <input type="text" id="title" name="title" placeholder="Enter title">
+                    </div>
+                    <div class="inputWrapper">
+                        <label for="author" class="label">Author</label>
+                        <select id="author" name="author_id">
+                            <option disabled selected>Select the Author</option>
+                            <?php foreach ($authors as $author) { ?>
+                                <option value=<?php echo $author['id']; ?> class="<?php echo $author['pol']; ?>">
+                                    <?php echo "${author['ime']} ${author['prezime']}" ?></span>
+                                </option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="inputWrapper">

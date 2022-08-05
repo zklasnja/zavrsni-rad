@@ -26,7 +26,7 @@ include_once('db-connect.php');
 <body>
     <?php include('header.php');
 
-    $sql = "SELECT p.id, p.author_id, p.title , p.created_at, p.body, a.id, a.ime, a.prezime, a.pol
+    $sql = "SELECT p.id, p.author_id, p.title , p.created_at, p.body, a.ime, a.prezime, a.pol
     FROM posts as p INNER JOIN authors as a ON p.author_id = a.id
     ORDER BY created_at DESC";
 

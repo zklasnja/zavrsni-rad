@@ -60,7 +60,7 @@ include_once('db-connect.php');
                         <label for="prezime" class="label">Last Name</label>
                         <input type="text" id="prezime" name="prezime" placeholder="Enter Last Name">
                     </div>
-                    <div class="inputWrapper">
+                    <div class="radioWrapper">
                         <input type="radio" id="pol" name="pol" value="M">
                         <label for="m">Male</label><br>
                         <input type="radio" id="pol" name="pol" value="Z">

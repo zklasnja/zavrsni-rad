@@ -26,9 +26,17 @@ a:hover {
     display:block;
 }
 
+.radioWrapper{
+    display: flex;
+    gap: 10px;
+    align-items:flex-start;
+}
+
 #title,
 #author,
 #bodyPosts,
+#ime,
+#prezime,
 .submit {
     margin-bottom: 15px;
     border: 1px solid black;
@@ -38,8 +46,9 @@ a:hover {
 
 #title,
 #ime,
-#prezime
-#author{
+#prezime,
+#author,
+.select{
     width: 300px;
     box-sizing: border-box;
 }
@@ -61,4 +70,17 @@ input.radio {
     float: left;
     clear: none;
     margin: 2px 0 0 2px;
+}
+
+.M{
+    color: blue;
+}
+
+.Z{
+    color: pink;
+}
+
+.select{
+    -webkit-appearance:none;
+   
 }

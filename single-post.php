@@ -49,9 +49,9 @@ include_once('db-connect.php');
                     <?php if (!$singlePost) {
                         echo "Sorry, but we could not find this post!";
                     } else { ?>
-
+                        
                         <h2 class="blog-post-title"><?php echo $singlePost['title']; ?></h2>
-                        <p class="blog-post-meta"><?php echo $singlePost['created_at'] ?> by <a href="#"><?php echo "${singlePost['ime']} ${singlePost['prezime']}"; ?></a></p>
+                        <p class="blog-post-meta"><?php echo $singlePost['created_at'] ?> by <a href="#" class="<?php echo $singlePost['pol'] ?>"><?php echo "${singlePost['ime']} ${singlePost['prezime']}"; ?></a></p>
                         <p> <?php echo $singlePost['body'];
                         } ?></p>
                 </div><!-- /.blog-post -->
