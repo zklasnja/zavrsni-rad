@@ -1,11 +1,12 @@
 <?php
 include_once('db-connect.php');
 
-$sql = "SELECT author, created_at, text, post_id FROM comments WHERE post_id = {$_GET['post_id']}";
+$sql = "SELECT c.id, c.author_id, c.post_id, c.created_at, c.text, a.id, a.ime, a.prezime, a.pol
+                    FROM comments as c INNER JOIN authors as a ON c.author_id = a.id
+                    WHERE c.post_id = {$_GET['post_id']}";
 $statement = $connection->prepare($sql);
 $statement->execute();
 $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <div class="comments">
@@ -17,7 +18,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach ($comments as $comment) { ?>
             <li>
                     <div class="single-comment">
-                        <div>posted by: <strong><?php echo $comment['author']; ?></strong> on <?php echo $comment['created_at']; ?></div>
+                        <div>posted by: <strong><?php echo "${comment['ime']} ${comment['prezime']}"; ?></strong> on <?php echo $comment['created_at']; ?></div>
                         <div><?php echo $comment['text']; ?></div>
                     </div>
             </li>

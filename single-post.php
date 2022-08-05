@@ -31,7 +31,9 @@ include_once('db-connect.php');
     if (isset($_GET['post_id'])) {
 
         //making a query to get all data needed to display a single post
-        $sql = "SELECT * FROM posts WHERE id = {$_GET['post_id']}";
+        $sql = "SELECT p.id, p.author_id, p.title , p.created_at, p.body, a.id, a.ime, a.prezime, a.pol
+                    FROM posts as p INNER JOIN authors as a ON p.author_id = a.id
+                    WHERE p.id = {$_GET['post_id']}";
         $statement = $connection->prepare($sql);
         $statement->execute();
         $singlePost = $statement->fetch(PDO::FETCH_ASSOC);
@@ -49,7 +51,7 @@ include_once('db-connect.php');
                     } else { ?>
 
                         <h2 class="blog-post-title"><?php echo $singlePost['title']; ?></h2>
-                        <p class="blog-post-meta"><?php echo $singlePost['created_at'] ?> by <a href="#"><?php echo $singlePost['author']; ?></a></p>
+                        <p class="blog-post-meta"><?php echo $singlePost['created_at'] ?> by <a href="#"><?php echo "${singlePost['ime']} ${singlePost['prezime']}"; ?></a></p>
                         <p> <?php echo $singlePost['body'];
                         } ?></p>
                 </div><!-- /.blog-post -->

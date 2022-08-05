@@ -5,6 +5,7 @@
             <nav class="nav">
                 <a class="nav-link active" href="posts.php">Home</a>
                 <a class="nav-link" href="create-post.php">Create Post</a>
+                <a class="nav-link" href="create-author.php">Create Author</a>
             </nav>
         </div>
     </div>

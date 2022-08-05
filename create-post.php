@@ -1,5 +1,5 @@
 <?php
-   include_once('db-connect.php');
+include_once('db-connect.php');
 ?>
 
 <!doctype html>
@@ -25,22 +25,28 @@
 </head>
 
 <body>
-    <?php include('header.php'); 
+    <?php include('header.php');
     $error = null;
     date_default_timezone_set('Europe/Belgrade');
-
-    if(isset($_POST['submit'])){
-
+    
+    $sql = "SELECT * FROM authors";
+    $statement = $connection->prepare($sql);
+    $statement->execute();
+    $authors = $statement->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (isset($_POST['submit'])) {
+        
         $body = $_POST['body'];
         $title = $_POST['title'];
-        $author = $_POST['author'];
+        $author = $_POST['author_id'];
         $created_at = date('Y-m-d H:i:s', time());
-
-        if(empty($body) || empty($title) || empty($author)){
+        
+        
+        if (empty($body) || empty($title) || empty($author)) {
             $error = "Title, Author and Body of the Blog post are required!";
         } else {
             $sql = "INSERT INTO posts (
-                title, body, author, created_at)
+                title, body, author_id, created_at)
             VALUES (
                 '$title', '$body', '$author', '$created_at')";
             $statement = $connection->prepare($sql);
@@ -50,17 +56,24 @@
     }
     ?>
 
-    <main role="main" class="container">
-        <div class="row">
-            <form action="create-post.php" method="POST" id="postsForma">
-                <div>
-                    <div class="inputWrapper">
-                        <label for="title" class="label">Title</label>
-                        <input type="text" id="title" name="title" placeholder="Enter title">
-                    </div>
-                    <div class="inputWrapper">
-                        <label for="author" class="label">Author</label>
-                        <input type="text" id="author" name="author" placeholder="Enter Author Name">
+<main role="main" class="container">
+    <div class="row">
+        <form action="create-post.php" method="POST" id="postsForma">
+            <div>
+                <div class="inputWrapper">
+                    <label for="title" class="label">Title</label>
+                    <input type="text" id="title" name="title" placeholder="Enter title">
+                </div>
+                <div class="inputWrapper">
+                    <label for="author" class="label">Author</label>
+                    <select id="author" name="author_id">
+                        <option>Select the Author</option>
+                        <?php foreach ($authors as $author) { ?>
+                            <option value=<?php echo $author['id']?>>
+                                <?php echo "${author['ime']} ${author['prezime']}"?>
+                            </option>
+                        <?php } ?>
+                        </select>
                     </div>
                     <div class="inputWrapper">
                         <label for="body" class="label">Body</label>
@@ -75,4 +88,5 @@
     </main><!-- /.container -->
     <?php include('footer.php'); ?>
 </body>
+
 </html>

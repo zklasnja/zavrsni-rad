@@ -1,5 +1,5 @@
 <?php
-   include_once('db-connect.php');
+include_once('db-connect.php');
 ?>
 
 <!doctype html>
@@ -26,7 +26,9 @@
 <body>
     <?php include('header.php');
 
-    $sql = "SELECT * FROM posts ORDER BY created_at DESC";
+    $sql = "SELECT p.id, p.author_id, p.title , p.created_at, p.body, a.id, a.ime, a.prezime, a.pol
+    FROM posts as p INNER JOIN authors as a ON p.author_id = a.id
+    ORDER BY created_at DESC";
 
     $statement = $connection->prepare($sql);
     $statement->execute();
@@ -43,12 +45,12 @@
 
                 <div class="blog-post">
                     <?php
-                    foreach ($posts as $post){?>
+                    foreach ($posts as $post) { ?>
                         <h2 class="blog-post-title"><a href="single-post.php?post_id=<?php echo ($post['id']) ?>"><?php echo ($post['title']) ?></a></h2>
-                        <p class="blog-post-meta"><?php echo ($post['created_at']) ?> by <a href="#"><?php echo ($post['author']) ?></a></p>
-                        <p><?php echo ($post['body']);?></p>
-                        <?php } ?>
-                    
+                        <p class="blog-post-meta"><?php echo ($post['created_at']) ?> by <a href="#"><?php echo "${post['ime']} ${post['prezime']}" ?></a></p>
+                        <p><?php echo ($post['body']); ?></p>
+                    <?php } ?>
+
                     <nav class="blog-pagination">
                         <a class="btn btn-outline-primary" href="#">Older</a>
                         <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
